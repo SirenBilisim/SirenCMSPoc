@@ -14,6 +14,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AddUnvanComponent } from './_Components/_Unvan/add-unvan/add-unvan.component';
+import { EditUnvanComponent } from './_Components/_Unvan/edit-unvan/edit-unvan.component';
+import { UnvanListComponent } from './_Components/_Unvan/unvan-list/unvan-list.component';
 
 @NgModule({
     imports: [
@@ -27,7 +29,9 @@ import { AddUnvanComponent } from './_Components/_Unvan/add-unvan/add-unvan.comp
         HomeComponent,
         LoginComponent,
         AdminComponent,
-        AddUnvanComponent
+        AddUnvanComponent,
+        EditUnvanComponent,
+        UnvanListComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
