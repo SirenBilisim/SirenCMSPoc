@@ -36,7 +36,7 @@ export class ListUnvan2Component implements OnInit {
   editUnvan(unvan: Unvan): void {
     window.localStorage.removeItem("editUnvanId");
     window.localStorage.setItem("editUnvanId", unvan.id.toString());
-    this.router.navigate(['edit-unvan']);
+    this.router.navigate(['edit2-unvan']);
   };
 
   addUnvan(): void {

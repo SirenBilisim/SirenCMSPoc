@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Reactive form servicesunvan.service";
+import {Router} from "@angular/router";
+import { Unvan2Service } from "../../../_services/_Unvan2/unvan2.service";
 
 @Component({
   selector: 'app-add-unvan2',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddUnvan2Component implements OnInit {
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,private router: Router, private apiService: Unvan2Service
+  ) { }
+
+  addForm: FormGroup;
 
   ngOnInit() {
+    this.addForm = this.formBuilder.group({
+      id: [],
+      adi: ['', [Validators.required, Validators.minLength(2)]],
+      parafUnvan: ['']
+    });
   }
+
+  onSubmit() {
+    this.apiService.createUnvan(this.addForm.value)
+      .subscribe( data => {
+        this.router.navigate(['list-unvan']);
+      });
+  }
+
 
 }
