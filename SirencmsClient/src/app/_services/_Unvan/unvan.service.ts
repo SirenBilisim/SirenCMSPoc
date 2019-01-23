@@ -15,18 +15,33 @@ export class UnvanService {
   }
 
   GetUnvansList() {
-    this.unvansRef = this.http.get<Unvan[]>(ROOT_URL + 'Unvans');
-    return this.unvansRef;
+    return this.http.get<Unvan[]>(ROOT_URL + '/UnvanServer?iDisplayLength=10');
+
   }
 
   AddUnvan(unvan: Unvan) {
-
+    debugger;
     const headers = new HttpHeaders().set('content-type', 'application/json');
     var body = {
-      Adi: unvan.Adi, ParafUnvan: unvan.ParafUnvan
+      Adi: unvan.adi, ParafUnvan: unvan.parafUnvan
     }
-    return this.http.post<Unvan>(ROOT_URL + '/Unvan', body, { headers });
+    return this.http.post<Unvan>(ROOT_URL + '/UnvanServer', body, { headers });
   }
 
+  GetUnvan(id: any) {
+    return this.http.get<Unvan>(ROOT_URL + '/UnvanServer/' + id);
+  }
+
+  UpdateUnvan(unvan: Unvan) {  
+    const headers = new HttpHeaders().set('content-type', 'application/json');  
+    var body = {  
+      Adi: unvan.adi, ParafUnvan: unvan.parafUnvan, ID: unvan.id
+    }  
+    return this.http.put<Unvan>(ROOT_URL + '/UnvanServer/' + unvan.id, body, { headers })  
+  
+  }  
+  DeleteEmployee(unvan: Unvan) {  
+    return this.http.delete<Unvan>(ROOT_URL + '/UnvanServer/' + unvan.id)  
+  }   
 
 }

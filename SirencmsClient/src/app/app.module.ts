@@ -27,7 +27,11 @@ import { UnvanListComponent } from './_Components/_Unvan/unvan-list/unvan-list.c
         HttpClientModule,
         routing,
         BrowserAnimationsModule,
-        ToastrModule.forRoot(),
+        ToastrModule.forRoot({
+            timeOut: 2000,
+            positionClass: 'toast-top-right',
+            preventDuplicates: true,      
+          }),
         NgxPaginationModule
     ],
     declarations: [

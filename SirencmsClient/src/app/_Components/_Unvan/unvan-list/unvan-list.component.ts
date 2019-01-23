@@ -29,7 +29,8 @@ export class UnvanListComponent implements OnInit {
   dataState() {     
     this.unvanApi.GetUnvansList().subscribe(data => {
       this.preLoader = false;
-      this.unvanList = data;      
+      this.unvanList = data['liste'];      
+      console.log(this.unvanList);
       if(data.length <= 0){
         this.hideWhenNoUnvan = false;
         this.noData = true;
@@ -39,4 +40,15 @@ export class UnvanListComponent implements OnInit {
       }
     })
   }
+
+  deleteUnvan(unvan) {
+    if (window.confirm('Are sure you want to delete this ünvan ?')) { // Asking from user before Deleting student data.
+      this.unvanApi.DeleteEmployee(unvan).subscribe(res=>{
+        this.toastr.success(unvan.adi + ' successfully deleted!'); // Alert message will show up when student successfully deleted.
+        this.dataState();
+      }); // Using Delete student API to delete student.
+      
+    }
+  }
+
 }

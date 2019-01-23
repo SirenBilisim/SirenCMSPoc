@@ -30,8 +30,9 @@
       <thead>
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">Adi</th>
+          <th scope="col">Adı</th>
           <th scope="col">Paraf Ünvan</th>
+          <th scope="col">Durum</th>
           <th class="text-center" scope="col">Edit</th>
         </tr>
       </thead>
@@ -39,12 +40,13 @@
         <!-- *ngFor loop iterates over Student array and fetch the student's data -->
         <!-- paginate pipe will add pagination in student's list, it won't show if items are less then 7 -->
         <tr *ngFor="let unvan of unvanList| paginate: { itemsPerPage: 7, currentPage: p }; let i = index;">
-          <th scope="row">{{unvan.Id}}</th>
-          <td>{{unvan.Adi}}</td>
-          <td>{{unvan.ParafUnvan}}</td>
+          <th scope="row">{{unvan.id}}</th>
+          <td>{{unvan.adi}}</td>
+          <td>{{unvan.parafUnvan}}</td>
+          <td>{{unvan.status}}</td>
           <td class="text-center action-block">
-            <i class="far fa-edit" routerLink="/edit-unvan/{{unvan.Id}}"></i>
-            <!-- <i class="far fa-trash-alt" (click)="deleteUnvan(unvan)"></i></td> -->
+            <i class="far fa-edit" routerLink="/edit-unvan/{{unvan.id}}"></i>
+            <i class="far fa-trash-alt" (click)="deleteUnvan(unvan)"></i></td>
         </tr>
       </tbody>
     </table>
