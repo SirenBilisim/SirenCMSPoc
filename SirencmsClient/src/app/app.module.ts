@@ -3,7 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-// used to create fake backend
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -22,7 +25,10 @@ import { UnvanListComponent } from './_Components/_Unvan/unvan-list/unvan-list.c
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        routing
+        routing,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot(),
+        NgxPaginationModule
     ],
     declarations: [
         AppComponent,
