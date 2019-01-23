@@ -1,0 +1,27 @@
+<div class="col-md-6 user-container">
+    <h2 style="margin: auto"> Ünvan Listesi</h2>
+    <button class="btn btn-danger" style="width:100px" (click)="addUnvan()"> Ünvan Ekle</button>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th class="hidden">Id</th>
+        <th>Adı</th>
+        <th>Paraf Ünvan</th>
+        <th>Durum</th>
+        
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let unvan of unvans">
+        <td class="hidden">{{unvan.id}}</td>
+        <td>{{unvan.adi}}</td>
+        <td>{{unvan.parafUnvan}}</td>
+        <td>{{unvan.status}}</td>
+        <td class="text-center action-block">
+          <button class="btn btn-danger" (click)="deleteUnvan(unvan)"> Sil</button>
+          <button class="btn btn-success" (click)="editUnvan(unvan)"> Güncelle</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  
