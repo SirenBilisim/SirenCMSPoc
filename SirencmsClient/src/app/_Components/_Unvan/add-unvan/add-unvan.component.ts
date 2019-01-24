@@ -29,7 +29,7 @@ export class AddUnvanComponent implements OnInit {
   unvanForm() {
     this.addForm = this.fb.group({
       id: [''],
-      adi: ['', [Validators.required, Validators.minLength(2)]],
+      adi: ['', [Validators.required, Validators.minLength(5)]],
       parafUnvan: ['']
     })
   }

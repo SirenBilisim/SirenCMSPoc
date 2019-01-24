@@ -15,16 +15,22 @@ export class AddUnvan2Component implements OnInit {
   ) { }
 
   addForm: FormGroup;
-
+  submitted = false;
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       id: [],
-      adi: ['', [Validators.required, Validators.minLength(2)]],
+      adi: ['', [Validators.required, Validators.minLength(5)]],
       parafUnvan: ['']
     });
   }
-
+  get f() {
+    return this.addForm.controls;
+  }
   onSubmit() {
+    this.submitted = true;
+    if (this.addForm.invalid) {
+      return;
+    }
     this.apiService.createUnvan(this.addForm.value)
       .subscribe( data => {
         this.router.navigate(['list-unvan']);
