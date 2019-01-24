@@ -29,13 +29,19 @@ export class ListUnvan2Component implements OnInit {
   deleteUnvan(unvan: Unvan): void {
     this.apiService.deleteUnvan(unvan.id)
       .subscribe( data => {
-        this.unvans = this.unvans.filter(u => u !== unvan);
+        
+        this.apiService.getUnvans()
+      .subscribe( data => {
+          this.unvans = data['liste'];
+      });
+
+        // this.unvans = this.unvans.filter(u => u !== unvan);
       })
   };
 
   editUnvan(unvan: Unvan): void {
-    window.localStorage.removeItem("editUnvanId");
-    window.localStorage.setItem("editUnvanId", unvan.id.toString());
+    window.localStorage.removeItem("editItemId");
+    window.localStorage.setItem("editItemId", unvan.id.toString());
     this.router.navigate(['edit2-unvan']);
   };
 
