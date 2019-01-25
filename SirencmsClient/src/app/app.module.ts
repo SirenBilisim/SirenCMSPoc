@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
+import {  DataTablesModule} from "angular-datatables";
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 
@@ -22,6 +22,7 @@ import { UnvanListComponent } from './_Components/_Unvan/unvan-list/unvan-list.c
 import { AddUnvan2Component } from './_Components/_Unvan2/add-unvan2/add-unvan2.component';
 import { EditUnvan2Component } from './_Components/_Unvan2/edit-unvan2/edit-unvan2.component';
 import { ListUnvan2Component } from './_Components/_Unvan2/list-unvan2/list-unvan2.component';
+import { StaticDatatableComponent } from './_Components/DatatableTest/static-datatable/static-datatable.component';
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import { ListUnvan2Component } from './_Components/_Unvan2/list-unvan2/list-unva
             positionClass: 'toast-top-right',
             preventDuplicates: true,      
           }),
-        NgxPaginationModule
+        NgxPaginationModule,
+        DataTablesModule
     ],
     declarations: [
         AppComponent,
@@ -47,7 +49,8 @@ import { ListUnvan2Component } from './_Components/_Unvan2/list-unvan2/list-unva
         UnvanListComponent,
         AddUnvan2Component,
         EditUnvan2Component,
-        ListUnvan2Component
+        ListUnvan2Component,
+        StaticDatatableComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

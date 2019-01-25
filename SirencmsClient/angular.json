@@ -29,9 +29,15 @@
               "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-regular.css",
               "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-brands.css",
               "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js"
+              
+            ]
           },
           "configurations": {
             "production": {
