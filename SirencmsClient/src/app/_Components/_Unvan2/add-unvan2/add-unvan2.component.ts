@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Reactive form servicesunvan.service";
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 import { Unvan2Service } from "../../../_services/_Unvan2/unvan2.service";
+import { existingAdiValidator } from '../../../_core/custom-validators/existing-adi-validator';
+
 
 @Component({
   selector: 'app-add-unvan2',
@@ -11,7 +13,7 @@ import { Unvan2Service } from "../../../_services/_Unvan2/unvan2.service";
 export class AddUnvan2Component implements OnInit {
 
   constructor(
-    private formBuilder: FormBuilder,private router: Router, private apiService: Unvan2Service
+    private formBuilder: FormBuilder, private router: Router, private apiService: Unvan2Service
   ) { }
 
   addForm: FormGroup;
@@ -19,20 +21,27 @@ export class AddUnvan2Component implements OnInit {
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       id: [],
-      adi: ['', [Validators.required, Validators.minLength(5)]],
+      adi: ['',
+        [Validators.required, Validators.minLength(5)],
+        [existingAdiValidator(this.apiService, 118)] //async validators
+      ],
       parafUnvan: ['']
     });
+
   }
   get f() {
     return this.addForm.controls;
   }
+  get adi() {
+    return this.addForm.get('adi');
+ }  
   onSubmit() {
     this.submitted = true;
     if (this.addForm.invalid) {
       return;
     }
     this.apiService.createUnvan(this.addForm.value)
-      .subscribe( data => {
+      .subscribe(data => {
         this.router.navigate(['list-unvan']);
       });
   }

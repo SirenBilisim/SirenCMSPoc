@@ -31,5 +31,14 @@ export class Unvan2Service {
   deleteUnvan(id: number) {
     return this.http.delete<Unvan>(ROOT_URL + '/UnvanServer/' + id)
   }
+  getUnvanByAdi(id:number,unvanAdi: string): Promise<boolean[]> {
+    // unvanAdi = unvanAdi.trim().replace('@', '%40'); //Convert @ into Percent-encoding 
+    // unvanAdi = '^'+unvanAdi+'$'; //For exact match testing in Angular In-Memory Web API 
+    var body = {
+      id: id,adi: unvanAdi
+    }
+    if (id == null) id = 0;
+    return this.http.get<boolean[]>(ROOT_URL + '/UnvanServer/CheckDuplicate/' +id + '/' + unvanAdi ).toPromise();
+} 
 
 }
