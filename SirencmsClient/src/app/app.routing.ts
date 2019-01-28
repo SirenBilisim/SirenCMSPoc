@@ -19,6 +19,7 @@ import { EditUnvan2Component } from './_Components/_Unvan2/edit-unvan2/edit-unva
 import { ListUnvan2Component } from './_Components/_Unvan2/list-unvan2/list-unvan2.component';
 
 import {StaticDatatableComponent  } from "./_Components/DatatableTest/static-datatable/static-datatable.component";
+import {DatatableClientSideComponent} from "./_Components/Datatable/datatable-client-side/datatable-client-side.component";
 
 const appRoutes: Routes = [
     {
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
     { path: 'edit2-unvan', component:  EditUnvan2Component},
 
     { path: 'static-datatable', component:  StaticDatatableComponent},
+    { path: 'client-side-datatable', component:  DatatableClientSideComponent},
     
 
     // otherwise redirect to home

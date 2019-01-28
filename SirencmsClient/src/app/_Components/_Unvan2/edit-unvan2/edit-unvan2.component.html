@@ -13,7 +13,7 @@
       <div class="form-group">
         <label>Adı</label>
         <input type="text" class="form-control" formControlName="adi" [ngClass]="{'is-invalid': submitted && f.adi.errors}" />
-        <div *ngIf="submitted && f.adi.errors" class="invalid-feedback">
+        <div *ngIf="submitted && adi.errors" class="invalid-feedback">
           <div *ngIf="f.adi.errors.required">Lütfen ünvan adı giriniz...</div>
           <div *ngIf="f.adi.errors.minlength"> Ünvan adı en az 5 karakter olması gerekmektedir.</div>
           <div *ngIf="f.adi.errors.adiExists"> 

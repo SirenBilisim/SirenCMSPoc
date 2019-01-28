@@ -13,7 +13,7 @@ export class Unvan2Service {
   constructor(private http: HttpClient) { }
 
   getUnvans() {
-    return this.http.get<Unvan[]>(ROOT_URL + '/UnvanServer?iDisplayLength=10');
+    return this.http.get<Unvan[]>(ROOT_URL + '/UnvanServer?iDisplayLength=100200');
   }
 
   getUnvanById(id: number) {

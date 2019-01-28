@@ -25,6 +25,7 @@ import { ListUnvan2Component } from './_Components/_Unvan2/list-unvan2/list-unva
 import { StaticDatatableComponent } from './_Components/DatatableTest/static-datatable/static-datatable.component';
 
 import {  ExistingAdiValidatorDirective} from "./_core/custom-validators/existing-adi-validator";
+import { DatatableClientSideComponent } from './_Components/Datatable/datatable-client-side/datatable-client-side.component';
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import {  ExistingAdiValidatorDirective} from "./_core/custom-validators/existin
         EditUnvan2Component,
         ListUnvan2Component,
         StaticDatatableComponent,
-        ExistingAdiValidatorDirective
+        ExistingAdiValidatorDirective,
+        DatatableClientSideComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
