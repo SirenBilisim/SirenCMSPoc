@@ -64,10 +64,26 @@ export class DatatableClientSideComponent implements OnInit {
         { title: "Adı", data: "adi" },
         { title: "Paraf Ünvan", data: "parafUnvan" },
         // { title: "Durum", data: "status", render: UnvanStatuRenderer, sortable: false, width: 50 },
-        // { title: "İşlemler", render: UnvanButonlarRenderer, sortable: false, data: null, responsivePriority: 999, width: 50 }
+        { title: "İşlemler", render: this.UnvanButonlarRenderer}
       ]
     };
   }
+
+  UnvanButonlarRenderer (data, type, row) {
+
+    var html = "<div class=\"dropdown\">" +
+        "<button class=\"btn btn-default dropdown-toggle btn-xs\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\" > İşlemler\r\n " +
+            "<span class=\"caret\"></span>\r\n</button>\r\n" +
+        "   <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">\r\n";
+
+    var guncelleBtn = "<li><a href=\"javascript:;\"  onclick=\"UnvanGuncelle(" + "'" + row["id"] + "'" + ")\"><i class=\"fa-lg mr-10 zmdi zmdi-edit\"></i> Güncelle </a></li>";
+    var silBtn = "<li><a href=\"javascript:;\" onclick=\"UnvanSil(" + "'" + row["id"] + "'" + ")\"><i class=\"fa-lg mr-10 zmdi zmdi-eye-off\"></i> Pasifleştir </a></li>";
+    var aktiflestirBtn = "<li><a href=\"javascript:;\" onclick=\"UnvanAktiflestir(" + "'" + row["id"] + "'" + ")\"><i class=\"fa-lg mr-10 zmdi zmdi-input-power\"></i> Aktifleştir </a></li>";
+
+    html += guncelleBtn + silBtn + aktiflestirBtn;
+
+    return html;
+}
 
 
 
