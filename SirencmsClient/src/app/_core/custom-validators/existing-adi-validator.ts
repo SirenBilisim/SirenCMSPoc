@@ -3,12 +3,13 @@ import { AsyncValidatorFn, AsyncValidator, NG_ASYNC_VALIDATORS, AbstractControl,
 import { Observable } from "rxjs";
 import { Unvan2Service } from '../../_services/_Unvan2/unvan2.service';
 
+
 export function existingAdiValidator(unvanService: Unvan2Service, id : any): AsyncValidatorFn {
     return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
         return unvanService.getUnvanByAdi(id, control.value).then(
             result => {
                 debugger;
-                return (result) ? { "adiExists": true } : null;
+                return (!result) ? { "adiExists": true } : null;
             }
         );
     };
@@ -19,9 +20,9 @@ export function existingAdiValidator(unvanService: Unvan2Service, id : any): Asy
     providers: [{ provide: NG_ASYNC_VALIDATORS, useExisting: ExistingAdiValidatorDirective, multi: true }]
 })
 export class ExistingAdiValidatorDirective implements AsyncValidator {
-    constructor(private unvanService: Unvan2Service, private id:number) { }
+    constructor(private unvanService: Unvan2Service) { }
 
     validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-        return existingAdiValidator(this.unvanService,this.id)(control);
+        return existingAdiValidator(this.unvanService,118)(control);
     }
 } 
