@@ -4,8 +4,10 @@ import { Observable } from "rxjs";
 import { Unvan2Service } from '../../_services/_Unvan2/unvan2.service';
 
 
-export function existingAdiValidator(unvanService: Unvan2Service, id : any): AsyncValidatorFn {
+export function existingAdiValidator(unvanService: Unvan2Service, id:any): AsyncValidatorFn {
     return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+     
+     
         return unvanService.getUnvanByAdi(id, control.value).then(
             result => {
                 debugger;
@@ -17,12 +19,13 @@ export function existingAdiValidator(unvanService: Unvan2Service, id : any): Asy
 
 @Directive({
     selector: '[adiExists][formControlName],[adiExists][formControl],[adiExists][ngModel]',
-    providers: [{ provide: NG_ASYNC_VALIDATORS, useExisting: ExistingAdiValidatorDirective, multi: true }]
+    providers: [{ provide: NG_ASYNC_VALIDATORS, useExisting: ExistingAdiValidatorDirective, multi: true }],
+    
 })
 export class ExistingAdiValidatorDirective implements AsyncValidator {
-    constructor(private unvanService: Unvan2Service) { }
+    constructor(private unvanService: Unvan2Service, private id : number) { }
 
     validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-        return existingAdiValidator(this.unvanService,118)(control);
+        return existingAdiValidator(this.unvanService, this.id)(control);
     }
 } 

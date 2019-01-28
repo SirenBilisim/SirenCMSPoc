@@ -11,14 +11,21 @@
         <input type="hidden" formControlName="id" placeholder="id" name="id" class="form-control" id="id">
       </div>
       <div class="form-group">
-          <label for="adi">Adı:</label>
-          <input type="text" formControlName="adi" placeholder="Adı" name="adi" class="form-control" id="adi">
+        <label>Adı</label>
+        <input type="text" class="form-control" formControlName="adi" [ngClass]="{'is-invalid': submitted && f.adi.errors}" />
+        <div *ngIf="submitted && f.adi.errors" class="invalid-feedback">
+          <div *ngIf="f.adi.errors.required">Lütfen ünvan adı giriniz...</div>
+          <div *ngIf="f.adi.errors.minlength"> Ünvan adı en az 5 karakter olması gerekmektedir.</div>
+          <div *ngIf="f.adi.errors.adiExists"> 
+              Aynı isimli ünvan mevcuttur.
+          </div>	
         </div>
-        <div class="form-group">
-          <label for="parafUnvan">Adı:</label>
-          <input type="text" formControlName="parafUnvan" placeholder="parafUnvan" name="parafUnvan" class="form-control"
-            id="parafUnvan">
-        </div>
+      </div>
+      <div class="form-group">
+        <label>Paraf Ünvan</label>
+        <input type="text" class="form-control" formControlName="parafUnvan" [ngClass]="{'is-invalid': submitted && f.parafUnvan.errors}" />
+        
+      </div>
   
       <button class="btn btn-success">Update</button>
     </form>

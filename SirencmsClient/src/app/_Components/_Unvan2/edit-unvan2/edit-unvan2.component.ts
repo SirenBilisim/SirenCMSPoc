@@ -6,6 +6,7 @@ import { first } from "rxjs/operators";
 import { Unvan2Service } from "../../../_services/_Unvan2/unvan2.service";
 import { ToastrService } from "ngx-toastr";
 import { Location } from '@angular/common';  // Location service is used to go back to previous component
+import { existingAdiValidator } from '../../../_core/custom-validators/existing-adi-validator';
 
 @Component({
   selector: 'app-edit-unvan2',
@@ -16,6 +17,7 @@ export class EditUnvan2Component implements OnInit {
 
   unvan: Unvan;
   editForm: FormGroup;
+  submitted = false;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -33,7 +35,10 @@ export class EditUnvan2Component implements OnInit {
     }
     this.editForm = this.formBuilder.group({
       id: [],
-      adi: ['', [Validators.required, Validators.minLength(2)]],
+      adi: ['',
+      [Validators.required, Validators.minLength(5)],
+      [existingAdiValidator(this.apiService,itemId)] //async validators
+    ],
       parafUnvan: ['']
     });
     this.apiService.getUnvanById(+itemId)
@@ -41,8 +46,18 @@ export class EditUnvan2Component implements OnInit {
         this.editForm.setValue(data);
       });
   }
-
+  get f() {
+    return this.editForm.controls;
+  }
+ 
+  get adi() {
+    return this.editForm.get('adi');
+ }  
   onSubmit() {
+    this.submitted = true;
+    if (this.editForm.invalid) {
+      return;
+    }
     this.apiService.updateUnvan(this.editForm.value)
       .pipe(first())
       .subscribe(

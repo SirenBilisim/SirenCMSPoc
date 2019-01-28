@@ -19,15 +19,17 @@ export class AddUnvan2Component implements OnInit {
   addForm: FormGroup;
   submitted = false;
   ngOnInit() {
+
+    
+
     this.addForm = this.formBuilder.group({
       id: [],
       adi: ['',
         [Validators.required, Validators.minLength(5)],
-        [existingAdiValidator(this.apiService, 118)] //async validators
+        [existingAdiValidator(this.apiService,0)] //async validators
       ],
       parafUnvan: ['']
     });
-
   }
   get f() {
     return this.addForm.controls;
