@@ -10,6 +10,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {  DataTablesModule} from "angular-datatables";
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
@@ -39,8 +40,10 @@ import { DatatableClientSideComponent } from './_Components/Datatable/datatable-
             positionClass: 'toast-top-right',
             preventDuplicates: true,      
           }),
+
         NgxPaginationModule,
-        DataTablesModule
+        DataTablesModule,
+        SweetAlert2Module.forRoot()
     ],
     declarations: [
         AppComponent,

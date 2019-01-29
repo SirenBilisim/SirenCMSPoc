@@ -3,6 +3,7 @@ import { ROOT_URL } from "../../../_models/config";
 import {turkish } from "../../../_models/Turkish";
 import { Unvan2Service } from "../../../_services/_Unvan2/unvan2.service";
 import { Unvan } from "../../../_models/_Unvan/unvan";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-datatable-client-side',
@@ -13,16 +14,46 @@ export class DatatableClientSideComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
 
   constructor(private apiService: Unvan2Service) { }
-  unvans: Unvan[];
+   unvans: Unvan[];
+  dtTrigger: Subject<any> = new Subject();
   displayTable = false;
+  
   ngOnInit() {
-    this.dataState(); // Initialize student's list, when component is ready
+    this.dtOptions = {
+      searching: true,
+      processing: true,
+      serverSide: false,
+      responsive: true,
+      lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Hepsi"]],
+      language:turkish,
+      // dom: "<'row'<'col-sm-12'tr>>" +
+      //   "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
+      
+    };
+
+    this.apiService.getUnvans().subscribe(data => {
+       this.unvans = data['liste'];
+      this.displayTable = true;
+      this.dtTrigger.next();
+      
+    })
   }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+
+
+  // ngOnInit() {
+  //   this.dataState(); // Initialize student's list, when component is ready
+  // }
+
 
   dataState() {
     this.apiService.getUnvans().subscribe(data => {
       console.log(data['liste']);
-      this.unvans = data['liste'];
+      // this.unvans = data['liste'];
       this.displayTable = true;
       this.buildDtOptions();
       
@@ -34,9 +65,9 @@ export class DatatableClientSideComponent implements OnInit {
       processing: true,
       serverSide: false,
       responsive: true,
-      order: [[1, "asc"]],
       lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Hepsi"]],
       language:turkish,
+      
       // dom: "<'row'<'col-sm-12'tr>>" +
       //   "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
       data: this.unvans,
@@ -59,13 +90,13 @@ export class DatatableClientSideComponent implements OnInit {
       //   }
       // },
 
-      columns: [
-        { title: "Id", data: "id", searchable: false, visible: false },
-        { title: "Adı", data: "adi" },
-        { title: "Paraf Ünvan", data: "parafUnvan" },
-        // { title: "Durum", data: "status", render: UnvanStatuRenderer, sortable: false, width: 50 },
-        { title: "İşlemler", render: this.UnvanButonlarRenderer}
-      ]
+      // columns: [
+      //   { title: "Id", data: "id", searchable: false, visible: false },
+      //   { title: "Adı", data: "adi" },
+      //   { title: "Paraf Ünvan", data: "parafUnvan" },
+      //   // { title: "Durum", data: "status", render: UnvanStatuRenderer, sortable: false, width: 50 },
+      //   { title: "İşlemler", render: this.UnvanButonlarRenderer}
+      // ]
     };
   }
 
@@ -76,7 +107,7 @@ export class DatatableClientSideComponent implements OnInit {
             "<span class=\"caret\"></span>\r\n</button>\r\n" +
         "   <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">\r\n";
 
-    var guncelleBtn = "<li><a href=\"javascript:;\"  onclick=\"UnvanGuncelle(" + "'" + row["id"] + "'" + ")\"><i class=\"fa-lg mr-10 zmdi zmdi-edit\"></i> Güncelle </a></li>";
+    var guncelleBtn = "<li><a href=\"javascript:;\"  onclick=\"UnvanGuncelle(" + "'" + row["id"] + "'" + ")\"><i class=\"fa-lg mr-10 far fa-trash-alt\"></i> Güncelle </a></li>";
     var silBtn = "<li><a href=\"javascript:;\" onclick=\"UnvanSil(" + "'" + row["id"] + "'" + ")\"><i class=\"fa-lg mr-10 zmdi zmdi-eye-off\"></i> Pasifleştir </a></li>";
     var aktiflestirBtn = "<li><a href=\"javascript:;\" onclick=\"UnvanAktiflestir(" + "'" + row["id"] + "'" + ")\"><i class=\"fa-lg mr-10 zmdi zmdi-input-power\"></i> Aktifleştir </a></li>";
 
@@ -85,6 +116,10 @@ export class DatatableClientSideComponent implements OnInit {
     return html;
 }
 
+UnvanSil()
+{
+  alert('sssss');
+} 
 
 
 }
