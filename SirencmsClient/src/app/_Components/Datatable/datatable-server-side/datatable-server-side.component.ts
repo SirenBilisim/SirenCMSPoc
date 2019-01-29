@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Unvan2Service } from "../../../_services/_Unvan2/unvan2.service";
 import { Unvan } from "../../../_models/_Unvan/unvan";
+import {turkish } from "../../../_models/Turkish";
 @Component({
   selector: 'app-datatable-server-side',
   templateUrl: './datatable-server-side.component.html',
@@ -16,12 +17,14 @@ export class DatatableServerSideComponent implements OnInit {
   ngOnInit(): void {
     const that = this;
 
-    
+
     this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 20,
-      serverSide: true,
+     searching: true,
       processing: true,
+      serverSide: true,
+      responsive: true,
+      lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Hepsi"]],
+      language:turkish,
 
       ajax: (dataTablesParameters: any, callback) => {
         dataTablesParameters.iDisplayLength = this.dtOptions.pageLength;
