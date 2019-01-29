@@ -12,6 +12,11 @@ export class Unvan2Service {
 
   constructor(private http: HttpClient) { }
 
+  getUnvanServerSide(dataTablesParameters: any){
+
+    return this.http.post<DataTablesResponse>(ROOT_URL + '/UnvanServer/Liste',dataTablesParameters);
+  }
+
   getUnvans() {
     return this.http.get<Unvan[]>(ROOT_URL + '/UnvanServer?iDisplayLength=100200');
   }

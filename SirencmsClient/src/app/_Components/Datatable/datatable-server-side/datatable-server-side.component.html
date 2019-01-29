@@ -1,0 +1,35 @@
+<table datatable [dtOptions]="dtOptions" class="row-border hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Adi</th>
+            <th>Paraf Ünvan</th>
+            <th>Status</th>
+            <th>İşlemler</th>
+          </tr>
+    </thead>
+    <tbody *ngIf="unvans?.length != 0">
+        <tr *ngFor="let unvan of unvans">
+            <td>{{ unvan.id }}</td>
+            <td>{{ unvan.adi }}</td>
+            <td>{{ unvan.parafUnvan }}</td>
+            <td>{{ unvan.status }}</td>
+            <td><div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+    </tbody>
+    <tbody *ngIf="unvans?.length == 0">
+      <tr>
+        <td colspan="3" class="no-data-available">No data!</td>
+      </tr>
+    <tbody>
+  </table>

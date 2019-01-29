@@ -28,6 +28,7 @@ import { StaticDatatableComponent } from './_Components/DatatableTest/static-dat
 import {  ExistingAdiValidatorDirective} from "./_core/custom-validators/existing-adi-validator";
 import { DatatableClientSideComponent } from './_Components/Datatable/datatable-client-side/datatable-client-side.component';
 import { SweetAlertComponent } from './_Components/sweet-alert/sweet-alert.component';
+import { DatatableServerSideComponent } from './_Components/Datatable/datatable-server-side/datatable-server-side.component';
 
 @NgModule({
     imports: [
@@ -62,7 +63,8 @@ import { SweetAlertComponent } from './_Components/sweet-alert/sweet-alert.compo
         StaticDatatableComponent,
         ExistingAdiValidatorDirective,
         DatatableClientSideComponent,
-        SweetAlertComponent
+        SweetAlertComponent,
+        DatatableServerSideComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -20,6 +20,7 @@ import { ListUnvan2Component } from './_Components/_Unvan2/list-unvan2/list-unva
 
 import {StaticDatatableComponent  } from "./_Components/DatatableTest/static-datatable/static-datatable.component";
 import {DatatableClientSideComponent} from "./_Components/Datatable/datatable-client-side/datatable-client-side.component";
+import {DatatableServerSideComponent} from "./_Components/Datatable/datatable-server-side/datatable-server-side.component";
 import {SweetAlertComponent} from "./_Components/sweet-alert/sweet-alert.component";
 
 const appRoutes: Routes = [
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
 
     { path: 'static-datatable', component:  StaticDatatableComponent},
     { path: 'client-side-datatable', component:  DatatableClientSideComponent},
+    { path: 'server-side-datatable', component:  DatatableServerSideComponent},
     { path: 'sweet-alert', component:  SweetAlertComponent},
     
 
