@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,11 +27,14 @@ import { StaticDatatableComponent } from './_Components/DatatableTest/static-dat
 
 import {  ExistingAdiValidatorDirective} from "./_core/custom-validators/existing-adi-validator";
 import { DatatableClientSideComponent } from './_Components/Datatable/datatable-client-side/datatable-client-side.component';
+import { SweetAlertComponent } from './_Components/sweet-alert/sweet-alert.component';
 
 @NgModule({
     imports: [
+        
         BrowserModule,
         ReactiveFormsModule,
+        FormsModule,
         HttpClientModule,
         routing,
         BrowserAnimationsModule,
@@ -58,7 +61,8 @@ import { DatatableClientSideComponent } from './_Components/Datatable/datatable-
         ListUnvan2Component,
         StaticDatatableComponent,
         ExistingAdiValidatorDirective,
-        DatatableClientSideComponent
+        DatatableClientSideComponent,
+        SweetAlertComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

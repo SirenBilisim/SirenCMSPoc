@@ -1,0 +1,15 @@
+
+<p>
+    Start editing to see some magic happen :)
+  </p>
+  
+  <swal #saveSwal
+  (confirm)="save()"
+  [options]="alertOption"
+  >
+  </swal>
+  <swal #dialog title="Delete?" type="warning" [showLoaderOnConfirm]="true" (confirm)="onDelete(item)"></swal>
+  <swal #dialogsuccess title="Deleted!" type="success"></swal>
+  <swal #dialogerror title="Error!" text="An error has been raised" type="error"></swal>
+  <button md-button class="action-buttons" mdTooltip="Delete" mdTooltipPosition="right" (click)="dialog.show()">test</button>
+  <button (click)="showAlert($event)">Click here</button>
